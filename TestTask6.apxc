@@ -1,0 +1,34 @@
+@isTest
+public class TestTask6 {
+@isTest 
+    private static void testUpdatedRecords(){
+        Contact c = new Contact();
+        c.FirstName = 'fakeStudent';
+        c.LastName = 'TestCase1';
+        c.Prior_Qualification__c = 'Tertiary Post-Graduate';
+        c.Enrolment_Progression__c = 'Advanced';
+        Insert c; 
+        
+        Contact c1 = new Contact();
+        c1.FirstName = 'anotherFakeStudent';
+        c1.LastName = 'TestCase2';
+        c1.Prior_Qualification__c = 'Tertiary Graduate';
+        c1.Enrolment_Progression__c = 'Ultimate';
+        Insert c1; 
+        
+        Contact c2 = new Contact();
+        c2.FirstName = 'yetanotherFakeStudent';
+        c2.LastName = 'TestCase3';
+        c2.Prior_Qualification__c = 'Below Tertiary';
+        c2.Enrolment_Progression__c = 'Extra';
+        Insert c2; 
+       
+       Test.startTest(); 
+       Task6M6.updateStudentRecords();
+       Test.stopTest();
+      
+     	system.assertEquals('Advanced', c.Enrolment_Progression__c);
+        system.assertEquals('Ultimate', c1.Enrolment_Progression__c);
+        system.assertEquals('Extra', c2.Enrolment_Progression__c);
+    }
+}
