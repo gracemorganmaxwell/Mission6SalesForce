@@ -1,0 +1,20 @@
+// Apex Trigger, that will automatically enrol NEW students into 
+// Sprint Educations, first course 'Sprint Training' or SA1. 
+// The trigger will detect when a new record is created in the Student(api name: Contact)
+// object and then by using the id of the course record for SA1 and the id of the new student record 
+// the relationship will be formalised under the umbrella of the Enrolment junction object. 
+
+trigger Task8M6 on Contact (after insert) {
+    if(Trigger.isAfter){ // after the Contact new record is created
+        if(Trigger.isInsert){ // then insert new record to enrol student in SA1, 'Sprint Training'
+			List<Enrolment__c> enrols = new list<Enrolment__c>();
+            	for(Contact C:Trigger.new){
+                    Enrolment__c Lev1 = new Enrolment__c();
+                    Lev1.Course__c = 'a005h00000fFGF2AAO';
+                    Lev1.Student__c = c.id;
+                    enrols.add(Lev1);
+            } // end of for loop
+            insert enrols; 
+  	  	} // end of IF
+	 } // end of For Loop 
+} // end of Apex Trigger
