@@ -1,0 +1,24 @@
+public class Task6M8 {
+    public static void updateStudentRecords(){
+        list<Contact> fetchContacts = [SELECT Id, Prior_Qualification__c, Enrolment_Progression__c FROM Contact];
+        list<Contact> updatedRecord = new List<Contact>();
+        for(Contact record: fetchContacts){
+            if (record.Prior_Qualification__c == 'Below Tertiary'){
+                record.Enrolment_Progression__c = 'Advanced';
+                updatedRecord.add(record);
+            } // end of 1st if statement
+            if (record.Prior_Qualification__c == 'Tertiary Graduate'){
+                record.Enrolment_Progression__c = 'Ultimate';
+                updatedRecord.add(record);
+            } // end of 2nd if statement 
+            if (record.Prior_Qualification__c == 'Tertiary Post-Graduate'){
+                record.Enrolment_Progression__c = 'Extra';
+                updatedRecord.add(record);
+            } // end of 3rd if statement 
+            update updatedRecord;
+        } // end of for loop
+    } // end of method
+} // end of Apex Class
+
+// Apex Class to 'Update' the 'Enrolment-Progression' field, on the Student(Contact) Object
+// based on student records and the 'Prior-Qualification' feild on the same object.
