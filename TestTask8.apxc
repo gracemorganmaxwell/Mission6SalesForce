@@ -1,0 +1,18 @@
+// this is to test whether Task8M6.apxt, an apex trigger I created is successful
+
+@isTest
+
+public class TestTask8 {
+    
+    @isTest
+    private static void testEnrolTrigger(){
+        test.startTest();
+        
+        Enrolment__c e = new Enrolment__c();
+        e.Course__c = 'a005h00000fFGF2AAO';
+        e.Student__c = e.Id;
+        List <Enrolment__c> elist = [SELECT Id, Name, Student__c, Course__c FROM ENrolment__c];
+        System.assertEquals('a005h00000fFGF2AAO', 'Sprint Training');
+        Test.stopTest();
+    } 
+}
